@@ -25,7 +25,7 @@ let urlDB;
 if ( process.env.NODE_ENV === 'dev' ) {
     urlDB = 'mongodb://localhost:27017/cafe'; //Esta es la url local
 }else{
-    urlDB = process.env.NODE_ENV.MONGO_URI; //La variable de entorno MONGO_URI la cree con  (heroku config:set MONGO_URI="mongodb://cafe-user:pekyyrufy21@ds151840.mlab.com:51840/cafe")
+    urlDB = process.env.MONGO_URI; //La variable de entorno MONGO_URI la cree con  (heroku config:set MONGO_URI="mongodb://cafe-user:pekyyrufy21@ds151840.mlab.com:51840/cafe")
     //urlDB = 'mongodb://cafe-user:pekyyrufy21@ds151840.mlab.com:51840/cafe'; //Esta es la url remota q nos da Mlab
           // mongodb://<dbuser>:<dbpassword>@ds151840.mlab.com:51840/cafe  Hay q cambiarle por el nombre de usuario y la contraseña
 }
