@@ -16,7 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use( require('./routes/usuario') );
+
+//Configuracion global de rutas, las rutas estan en index.js
+app.use( require('./routes/index') );
 
 
 

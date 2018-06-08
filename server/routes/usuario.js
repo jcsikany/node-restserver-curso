@@ -4,13 +4,16 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
+const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticacion');
  
 
 const app = express();
 
 
-
-app.get('/usuario', (req, res) => {
+//VerificaToken es el middleware q se va a disparar cuando queramos accesar a esa ruta ('/usuario) y la tenemos en el archivo autenticacion.js video 115
+// Primero pasamos la ruta, segundo el verificador de token q lo pasamos por el header y tercero el callback con request y response.
+app.get('/usuario', verificaToken , (req, res) => {
+      
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -47,7 +50,7 @@ app.get('/usuario', (req, res) => {
   
 
 
-app.post('/usuario', (req, res) => {
+app.post('/usuario', [verificaToken, verificaAdmin_Role],(req, res) => {
   
       // el body q esta en req.body es el q va a aparecer cuando el bodyparser procese cualquier payload
       // que reciban las peticiones.
@@ -81,7 +84,7 @@ app.post('/usuario', (req, res) => {
   
   })
   
-app.put('/usuario/:id', (req, res) => {
+app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
   
       let id = req.params.id;
 
@@ -142,7 +145,7 @@ app.put('/usuario/:id', (req, res) => {
 
 // ---------------------Eliminacion Logica ----------------------------
 
-app.delete('/usuario/:id', (req, res) => {
+app.delete('/usuario/:id',  [verificaToken, verificaAdmin_Role], (req, res) => {
 
     let id = req.params.id;
 

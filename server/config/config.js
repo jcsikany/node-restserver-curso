@@ -21,6 +21,28 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 // ====================
 let urlDB;
 
+
+// ====================
+// Vencimiento del token
+// ====================
+//60 segundo
+//60 minutos
+//34 horas
+//30 dias
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+
+// ====================
+// SEED de autenticacion  //semilla de autenticacion
+// ====================
+
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+
+
+
+
+
+
 //si esta variable es igual a desarrollo(dev) voy a decirle q el url es el localhost
 if ( process.env.NODE_ENV === 'dev' ) {
     urlDB = 'mongodb://localhost:27017/cafe'; //Esta es la url local
